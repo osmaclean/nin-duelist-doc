@@ -1,122 +1,111 @@
-﻿"use client"
+"use client"
 
+import { useTranslation } from "react-i18next"
 import { CommandCard, Callout } from "@/components/doc-components"
 
 export function PageContent() {
+  const { t } = useTranslation()
+  const duelParams = t("userCommands.duelParams", { returnObjects: true }) as { name: string; type: string; required: boolean; description: string }[]
+  const rankParams = t("userCommands.rankParams", { returnObjects: true }) as { name: string; type: string; required: boolean; description: string }[]
+  const profileParams = t("userCommands.profileParams", { returnObjects: true }) as { name: string; type: string; required: boolean; description: string }[]
+  const historyParams = t("userCommands.historyParams", { returnObjects: true }) as { name: string; type: string; required: boolean; description: string }[]
+  const h2hParams = t("userCommands.h2hParams", { returnObjects: true }) as { name: string; type: string; required: boolean; description: string }[]
+  const pendingParams = t("userCommands.pendingParams", { returnObjects: true }) as { name: string; type: string; required: boolean; description: string }[]
+  const settingsParams = t("userCommands.settingsParams", { returnObjects: true }) as { name: string; type: string; required: boolean; description: string }[]
+
   return (
     <div className="space-y-6">
       <h1 id="comandos-de-usuario" className="text-3xl font-bold tracking-tight text-text-primary">
-        Comandos de Usuário
+        {t("userCommands.title")}
       </h1>
       <p className="text-text-secondary leading-relaxed">
-        Comandos disponíveis para todos os jogadores.
+        {t("userCommands.description")}
       </p>
 
       <div className="chakra-line" />
 
-      <h2 id="duelo" className="text-xl font-semibold text-text-primary">Duelo</h2>
+      <h2 id="duelo" className="text-xl font-semibold text-text-primary">{t("userCommands.duel")}</h2>
 
       <CommandCard
         name="/duel"
-        description="Desafia um jogador para um duelo ranqueado."
+        description={t("userCommands.duelDesc")}
         usage="/duel @oponente formato @testemunha"
-        parameters={[
-          { name: "opponent", type: "Usuário", required: true, description: "Quem você quer desafiar" },
-          { name: "format", type: "Escolha", required: true, description: "MD1 (Melhor de 1) ou MD3 (Melhor de 3)" },
-          { name: "witness", type: "Usuário", required: true, description: "Testemunha obrigatória" },
-        ]}
+        parameters={duelParams}
         examples={["/duel @NinjaPlayer MD1 @Testemunha"]}
       />
 
-      <h2 id="ranking" className="text-xl font-semibold text-text-primary">Ranking e Estatísticas</h2>
+      <h2 id="ranking" className="text-xl font-semibold text-text-primary">{t("userCommands.rankingStats")}</h2>
 
       <CommandCard
         name="/rank"
-        description="Exibe o ranking da season atual com 20 jogadores por página."
+        description={t("userCommands.rankDesc")}
         usage="/rank [page]"
-        parameters={[
-          { name: "page", type: "Inteiro", required: false, description: "Página do ranking (padrão: 1)" },
-        ]}
+        parameters={rankParams}
       />
 
       <CommandCard
         name="/mvp"
-        description="Exibe os 3 melhores jogadores da season atual (pódio) com destaque para Peak Streak."
+        description={t("userCommands.mvpDesc")}
         usage="/mvp"
       />
 
       <CommandCard
         name="/profile"
-        description="Exibe o perfil compacto de um jogador com posição no ranking, pontos, vitórias, derrotas, win rate, streaks e seasons jogadas."
+        description={t("userCommands.profileDesc")}
         usage="/profile [@jogador]"
-        parameters={[
-          { name: "player", type: "Usuário", required: false, description: "Jogador para consultar (padrão: você)" },
-        ]}
+        parameters={profileParams}
       />
 
       <CommandCard
         name="/history"
-        description="Exibe histórico de duelos e estatísticas na season atual. Mostra os últimos 10 duelos confirmados."
+        description={t("userCommands.historyDesc")}
         usage="/history [@jogador] [vs] [from] [to] [page]"
-        parameters={[
-          { name: "player", type: "Usuário", required: false, description: "Jogador para consultar (padrão: você)" },
-          { name: "vs", type: "Usuário", required: false, description: "Filtrar duelos contra este oponente" },
-          { name: "from", type: "Texto", required: false, description: "Data inicial no formato YYYY-MM-DD" },
-          { name: "to", type: "Texto", required: false, description: "Data final no formato YYYY-MM-DD" },
-          { name: "page", type: "Inteiro", required: false, description: "Página do histórico (10 duelos por página)" },
-        ]}
+        parameters={historyParams}
       />
 
       <CommandCard
         name="/h2h"
-        description="Exibe o confronto direto entre dois jogadores na season atual."
+        description={t("userCommands.h2hDesc")}
         usage="/h2h @player_a @player_b"
-        parameters={[
-          { name: "player_a", type: "Usuário", required: true, description: "Primeiro jogador" },
-          { name: "player_b", type: "Usuário", required: true, description: "Segundo jogador" },
-        ]}
+        parameters={h2hParams}
       />
 
       <CommandCard
         name="/activity"
-        description="Exibe os 10 jogadores mais ativos da season atual (por total de duelos jogados)."
+        description={t("userCommands.activityDesc")}
         usage="/activity"
       />
 
       <CommandCard
         name="/records"
-        description="Exibe os recordes da season atual: maior streak, melhor win rate (mínimo 5 jogos) e mais duelos."
+        description={t("userCommands.recordsDesc")}
         usage="/records"
       />
 
       <CommandCard
         name="/season"
-        description="Exibe o status da season atual com top 3 parcial, datas e dias restantes."
+        description={t("userCommands.seasonDesc")}
         usage="/season"
       />
 
       <CommandCard
         name="/pending"
-        description="Mostra duelos que precisam de ação sua, ordenados por urgência. Resposta ephemeral (só você vê)."
+        description={t("userCommands.pendingDesc")}
         usage="/pending [limit]"
-        parameters={[
-          { name: "limit", type: "Inteiro", required: false, description: "Máximo de duelos a exibir (1-50)" },
-        ]}
+        parameters={pendingParams}
       />
 
-      <h2 id="configuracoes" className="text-xl font-semibold text-text-primary">Configurações</h2>
+      <h2 id="configuracoes" className="text-xl font-semibold text-text-primary">{t("userCommands.settings")}</h2>
 
       <CommandCard
         name="/settings"
-        description="Configura suas preferências de notificação. Por padrão, DMs estão ativadas."
+        description={t("userCommands.settingsDesc")}
         usage="/settings notifications on|off"
-        parameters={[
-          { name: "notifications", type: "Escolha", required: true, description: "Ativar DMs ou Desativar DMs" },
-        ]}
+        parameters={settingsParams}
       />
 
       <Callout type="tip">
-        Todos os comandos usam slash commands do Discord. Comece digitando <code className="text-chakra">/</code> no chat.
+        <span dangerouslySetInnerHTML={{ __html: t("userCommands.callout") }} />
       </Callout>
     </div>
   )

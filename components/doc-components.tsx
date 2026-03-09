@@ -2,6 +2,7 @@
 
 import React, { useState, useCallback } from "react"
 import { motion, AnimatePresence } from "framer-motion"
+import { useTranslation } from "react-i18next"
 import { IconCopy, IconCheck, IconChevronDown } from "@/components/icons"
 
 /* ─── Callout ─── */
@@ -10,25 +11,25 @@ const calloutStyles = {
     border: "border-info/30",
     bg: "bg-info/5",
     icon: "text-info",
-    label: "Info",
+    labelKey: "callout.info",
   },
   warn: {
     border: "border-warn/30",
     bg: "bg-warn/5",
     icon: "text-warn",
-    label: "Aviso",
+    labelKey: "callout.warn",
   },
   tip: {
     border: "border-tip/30",
     bg: "bg-tip/5",
     icon: "text-tip",
-    label: "Dica",
+    labelKey: "callout.tip",
   },
   danger: {
     border: "border-danger/30",
     bg: "bg-danger/5",
     icon: "text-danger",
-    label: "Perigo",
+    labelKey: "callout.danger",
   },
 } as const
 
@@ -42,6 +43,7 @@ export function Callout({
   children: React.ReactNode
 }) {
   const s = calloutStyles[type]
+  const { t } = useTranslation()
   return (
     <div
       className={`my-4 rounded-lg border ${s.border} ${s.bg} px-4 py-3`}
@@ -58,8 +60,8 @@ export function Callout({
           </svg>
         </div>
         <div className="flex items-start gap-2">
-          <span className={`mt-0.5 text-xs font-semibold uppercase tracking-wider ${s.icon}`}>
-            {title || s.label}
+          <span className={`mt-0.5 text-xs font-semibold uppercase tracking-wider ${s.icon} select-none`}>
+            {title || t(s.labelKey)}
           </span>
         </div>
         <div className="mt-1.5 text-sm leading-relaxed text-text-secondary">
@@ -93,13 +95,13 @@ export function CodeBlock({
       {/* Header */}
       {(filename || language) && (
         <div className="flex items-center justify-between border-b border-border-default bg-surface-hover px-4 py-2">
-          <span className="font-mono text-xs text-text-muted">
+          <span className="font-mono text-xs text-text-muted select-none">
             {filename || language}
           </span>
           <button
             onClick={handleCopy}
-            className="flex items-center gap-1 rounded px-1.5 py-0.5 text-text-muted opacity-0 transition-all hover:text-text-primary group-hover:opacity-100"
-            aria-label="Copiar codigo"
+            className="flex items-center gap-1 rounded px-1.5 py-0.5 text-text-muted opacity-0 transition-all hover:text-text-primary group-hover:opacity-100 cursor-pointer"
+            aria-label="Copy code"
           >
             <AnimatePresence mode="wait">
               {copied ? (
@@ -145,7 +147,7 @@ export function Tabs({
           <button
             key={tab.label}
             onClick={() => setActive(i)}
-            className={`relative px-4 py-2 text-sm transition-colors ${
+            className={`relative px-4 py-2 text-sm transition-colors cursor-pointer select-none ${
               i === active
                 ? "text-text-primary"
                 : "text-text-muted hover:text-text-secondary"
@@ -185,7 +187,7 @@ export function Accordion({
         <div key={item.title}>
           <button
             onClick={() => setOpenIndex(openIndex === i ? null : i)}
-            className="flex w-full items-center justify-between px-4 py-3 text-sm text-text-primary transition-colors hover:bg-surface-hover"
+            className="flex w-full items-center justify-between px-4 py-3 text-sm text-text-primary transition-colors hover:bg-surface-hover cursor-pointer select-none"
             aria-expanded={openIndex === i}
           >
             <span>{item.title}</span>
@@ -232,7 +234,7 @@ export function Steps({
             <div className="absolute left-[11px] top-6 bottom-0 w-px bg-border-default" />
           )}
           {/* Step number */}
-          <div className="relative z-10 flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-border-default bg-surface text-xs font-medium text-text-secondary">
+          <div className="relative z-10 flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-border-default bg-surface text-xs font-medium text-text-secondary select-none">
             {i + 1}
           </div>
           {/* Content */}
@@ -265,7 +267,7 @@ export function InlineBadge({
 
   return (
     <span
-      className={`inline-flex items-center rounded-md border px-1.5 py-0.5 font-mono text-xs ${variantClasses[variant]}`}
+      className={`inline-flex items-center rounded-md border px-1.5 py-0.5 font-mono text-xs select-none ${variantClasses[variant]}`}
     >
       {children}
     </span>
@@ -275,7 +277,7 @@ export function InlineBadge({
 /* ─── Kbd ─── */
 export function Kbd({ children }: { children: React.ReactNode }) {
   return (
-    <kbd className="inline-flex h-5 items-center rounded border border-border-default bg-surface-raised px-1.5 font-mono text-[11px] text-text-muted">
+    <kbd className="inline-flex h-5 items-center rounded border border-border-default bg-surface-raised px-1.5 font-mono text-[11px] text-text-muted select-none">
       {children}
     </kbd>
   )
@@ -297,6 +299,7 @@ export function CommandCard({
   examples?: string[]
   admin?: boolean
 }) {
+  const { t } = useTranslation()
   return (
     <div className="my-4 overflow-hidden rounded-lg border border-border-default bg-surface">
       {/* Header */}
@@ -312,8 +315,8 @@ export function CommandCard({
 
         {usage && (
           <div>
-            <p className="text-xs font-medium uppercase tracking-wider text-text-muted mb-1">
-              Uso
+            <p className="text-xs font-medium uppercase tracking-wider text-text-muted mb-1 select-none">
+              {t("commandCard.usage")}
             </p>
             <code className="block rounded bg-surface-raised px-3 py-2 font-mono text-xs text-text-primary">
               {usage}
@@ -323,17 +326,17 @@ export function CommandCard({
 
         {parameters && parameters.length > 0 && (
           <div>
-            <p className="text-xs font-medium uppercase tracking-wider text-text-muted mb-1">
-              Parametros
+            <p className="text-xs font-medium uppercase tracking-wider text-text-muted mb-1 select-none">
+              {t("commandCard.parameters")}
             </p>
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
                 <thead>
                   <tr className="border-b border-border-subtle text-left">
-                    <th className="py-1.5 pr-4 text-xs font-medium text-text-muted">Nome</th>
-                    <th className="py-1.5 pr-4 text-xs font-medium text-text-muted">Tipo</th>
-                    <th className="py-1.5 pr-4 text-xs font-medium text-text-muted">Obrig.</th>
-                    <th className="py-1.5 text-xs font-medium text-text-muted">Descricao</th>
+                    <th className="py-1.5 pr-4 text-xs font-medium text-text-muted select-none">{t("commandCard.name")}</th>
+                    <th className="py-1.5 pr-4 text-xs font-medium text-text-muted select-none">{t("commandCard.type")}</th>
+                    <th className="py-1.5 pr-4 text-xs font-medium text-text-muted select-none">{t("commandCard.required")}</th>
+                    <th className="py-1.5 text-xs font-medium text-text-muted select-none">{t("commandCard.description")}</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -341,7 +344,7 @@ export function CommandCard({
                     <tr key={p.name} className="border-b border-border-subtle last:border-0">
                       <td className="py-1.5 pr-4 font-mono text-xs text-chakra">{p.name}</td>
                       <td className="py-1.5 pr-4 font-mono text-xs text-text-muted">{p.type}</td>
-                      <td className="py-1.5 pr-4 text-xs text-text-muted">{p.required ? "Sim" : "Nao"}</td>
+                      <td className="py-1.5 pr-4 text-xs text-text-muted">{p.required ? t("commandCard.yes") : t("commandCard.no")}</td>
                       <td className="py-1.5 text-xs text-text-secondary">{p.description}</td>
                     </tr>
                   ))}
@@ -353,8 +356,8 @@ export function CommandCard({
 
         {examples && examples.length > 0 && (
           <div>
-            <p className="text-xs font-medium uppercase tracking-wider text-text-muted mb-1">
-              Exemplos
+            <p className="text-xs font-medium uppercase tracking-wider text-text-muted mb-1 select-none">
+              {t("commandCard.examples")}
             </p>
             <div className="space-y-1">
               {examples.map((ex, i) => (

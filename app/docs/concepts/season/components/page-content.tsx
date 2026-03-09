@@ -1,58 +1,55 @@
-﻿"use client"
+"use client"
 
+import { useTranslation } from "react-i18next"
 import { Callout } from "@/components/doc-components"
 
 export function PageContent() {
+  const { t } = useTranslation()
+
+  const calloutHtml = t("season.callout")
+    .replace(/<adminLink>/, '<a href="/docs/commands/admin" class="text-chakra hover:underline">')
+    .replace(/<\/adminLink>/, "</a>")
+
   return (
     <div className="space-y-6">
       <h1 id="season" className="text-3xl font-bold tracking-tight text-text-primary">
-        Season
+        {t("season.title")}
       </h1>
       <p className="text-text-secondary leading-relaxed">
-        Temporada de 30 dias. Criada e fechada automaticamente. Ao fechar, o jogador
-        com mais pontos vira campeão e uma nova season começa imediatamente.
+        {t("season.description")}
       </p>
 
       <div className="chakra-line" />
 
-      <h2 id="ciclo-de-vida" className="text-xl font-semibold text-text-primary">Ciclo de vida</h2>
+      <h2 id="ciclo-de-vida" className="text-xl font-semibold text-text-primary">{t("season.lifecycle")}</h2>
       <ul className="space-y-2 text-sm text-text-secondary">
         <li>
-          <strong className="text-text-primary">Criação</strong> — Na primeira inicialização do bot
-          ou quando não existe season ativa, uma nova é criada (Season 1, 2, 3...) com duração de 30 dias.
+          <strong className="text-text-primary">{t("season.creationTitle")}</strong> — {t("season.creationDesc")}
         </li>
         <li>
-          <strong className="text-text-primary">Verificação</strong> — A cada 5 minutos, o bot
-          verifica se a season ativa expirou.
+          <strong className="text-text-primary">{t("season.verificationTitle")}</strong> — {t("season.verificationDesc")}
         </li>
         <li>
-          <strong className="text-text-primary">Fechamento</strong> — Se expirou: todos os duelos
-          não-finalizados são cancelados, o jogador com mais pontos é registrado como campeão, a
-          season é desativada e uma nova começa imediatamente.
+          <strong className="text-text-primary">{t("season.closureTitle")}</strong> — {t("season.closureDesc")}
         </li>
       </ul>
 
-      <h2 id="regras" className="text-xl font-semibold text-text-primary">Regras</h2>
+      <h2 id="regras" className="text-xl font-semibold text-text-primary">{t("season.rules")}</h2>
       <ul className="space-y-1.5 text-sm text-text-secondary">
-        <li>Apenas uma season pode estar ativa por vez</li>
-        <li>Cada jogador tem stats independentes por season (<code className="text-chakra">PlayerSeason</code>)</li>
-        <li>Nova season = placar zerado para todos</li>
-        <li>O histórico de todas as seasons é mantido permanentemente</li>
-        <li>Rankings são independentes por season</li>
+        <li>{t("season.rule1")}</li>
+        <li dangerouslySetInnerHTML={{ __html: t("season.rule2") }} />
+        <li>{t("season.rule3")}</li>
+        <li>{t("season.rule4")}</li>
+        <li>{t("season.rule5")}</li>
       </ul>
 
-      <h2 id="aviso-de-encerramento" className="text-xl font-semibold text-text-primary">Aviso de encerramento</h2>
+      <h2 id="aviso-de-encerramento" className="text-xl font-semibold text-text-primary">{t("season.closureNotice")}</h2>
       <p className="text-sm text-text-secondary leading-relaxed">
-        24 horas antes do fim da season, todos os jogadores ativos recebem uma notificação
-        avisando que a temporada está encerrando.
+        {t("season.closureNoticeDesc")}
       </p>
 
       <Callout type="info">
-        Para gerenciar seasons manualmente, use os comandos{" "}
-        <code className="text-chakra">/admin season status</code>,{" "}
-        <code className="text-chakra">/admin season end</code> e{" "}
-        <code className="text-chakra">/admin season create</code>. Veja{" "}
-        <a href="/docs/commands/admin" className="text-chakra hover:underline">Comandos Admin</a>.
+        <span dangerouslySetInnerHTML={{ __html: calloutHtml }} />
       </Callout>
     </div>
   )

@@ -1,14 +1,16 @@
-﻿"use client"
+"use client"
 
 import React, { useState } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { motion, AnimatePresence } from "framer-motion"
+import { useTranslation } from "react-i18next"
 import { navItems, type NavItem } from "@/lib/navigation"
 import { IconChevronRight } from "@/components/icons"
 
 function SidebarLink({ item, depth = 0 }: { item: NavItem; depth?: number }) {
   const pathname = usePathname()
+  const { t } = useTranslation()
   const isActive = item.href ? pathname === item.href : false
   const hasChildren = item.children && item.children.length > 0
   const isGroupActive = hasChildren
@@ -16,12 +18,14 @@ function SidebarLink({ item, depth = 0 }: { item: NavItem; depth?: number }) {
     : false
   const [open, setOpen] = useState(isGroupActive || isActive)
 
+  const label = t(item.titleKey)
+
   if (hasChildren) {
     return (
       <div>
         <button
           onClick={() => setOpen(!open)}
-          className={`flex w-full items-center gap-2 rounded-md px-3 py-1.5 text-sm transition-colors ${
+          className={`flex w-full items-center gap-2 rounded-md px-3 py-1.5 text-sm transition-colors cursor-pointer select-none ${
             isGroupActive
               ? "text-text-primary"
               : "text-text-secondary hover:text-text-primary"
@@ -29,7 +33,7 @@ function SidebarLink({ item, depth = 0 }: { item: NavItem; depth?: number }) {
           aria-expanded={open}
         >
           {item.icon && <item.icon className="w-4 h-4 shrink-0" />}
-          <span className="flex-1 text-left">{item.title}</span>
+          <span className="flex-1 text-left">{label}</span>
           <motion.div
             animate={{ rotate: open ? 90 : 0 }}
             transition={{ duration: 0.2 }}
@@ -49,7 +53,7 @@ function SidebarLink({ item, depth = 0 }: { item: NavItem; depth?: number }) {
               <div className="ml-4 border-l border-border-subtle pl-2 pt-1">
                 {item.children!.map((child) => (
                   <SidebarLink
-                    key={child.title}
+                    key={child.titleKey}
                     item={child}
                     depth={depth + 1}
                   />
@@ -65,7 +69,7 @@ function SidebarLink({ item, depth = 0 }: { item: NavItem; depth?: number }) {
   return (
     <Link
       href={item.href || "#"}
-      className={`relative flex items-center gap-2 rounded-md px-3 py-1.5 text-sm transition-all ${
+      className={`relative flex items-center gap-2 rounded-md px-3 py-1.5 text-sm transition-all select-none ${
         isActive
           ? "bg-chakra-glow text-chakra font-medium"
           : "text-text-secondary hover:bg-surface-hover hover:text-text-primary"
@@ -79,7 +83,7 @@ function SidebarLink({ item, depth = 0 }: { item: NavItem; depth?: number }) {
         />
       )}
       {item.icon && <item.icon className="w-3.5 h-3.5 shrink-0" />}
-      <span>{item.title}</span>
+      <span>{label}</span>
     </Link>
   )
 }
@@ -91,12 +95,12 @@ export function Sidebar({
   className?: string
   onLinkClick?: () => void
 }) {
-  const pathname = usePathname()
+  const { t } = useTranslation()
 
   return (
     <nav
       className={`flex flex-col gap-1 py-4 ${className}`}
-      aria-label="Navegação da documentação"
+      aria-label={t("nav.docNav")}
       onClick={(e) => {
         if ((e.target as HTMLElement).closest("a") && onLinkClick) {
           onLinkClick()
@@ -104,7 +108,7 @@ export function Sidebar({
       }}
     >
       {navItems.map((item) => (
-        <SidebarLink key={item.title} item={item} />
+        <SidebarLink key={item.titleKey} item={item} />
       ))}
 
       {/* Reading progress */}
@@ -117,6 +121,7 @@ export function Sidebar({
 
 function ReadingProgress() {
   const [progress, setProgress] = React.useState(0)
+  const { t } = useTranslation()
 
   React.useEffect(() => {
     const handleScroll = () => {
@@ -134,8 +139,8 @@ function ReadingProgress() {
 
   return (
     <div className="space-y-1.5">
-      <span className="text-[10px] uppercase tracking-wider text-text-muted">
-        Progresso
+      <span className="text-[10px] uppercase tracking-wider text-text-muted select-none">
+        {t("sidebar.progress")}
       </span>
       <div className="h-1 w-full overflow-hidden rounded-full bg-surface-raised">
         <motion.div
@@ -147,4 +152,3 @@ function ReadingProgress() {
     </div>
   )
 }
-
