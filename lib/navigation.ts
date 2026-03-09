@@ -1,6 +1,5 @@
-import {
+﻿import {
   IconBook,
-  IconRocket,
   IconDuel,
   IconSeason,
   IconWitness,
@@ -9,38 +8,24 @@ import {
   IconAdmin,
   IconTerminal,
   IconFlow,
-  IconFolder,
-  IconSettings,
-  IconTest,
-  IconMap,
+  IconMail,
 } from "@/components/icons"
 
 export type NavItem = {
   title: string
   href?: string
-  icon?: React.ComponentType<{ className?: string }>
+  icon?: (props: { className?: string }) => JSX.Element
   children?: NavItem[]
 }
 
 export const navItems: NavItem[] = [
   {
-    title: "Introducao",
+    title: "Introdução",
     icon: IconBook,
     children: [
-      { title: "O que e o NinDuelist", href: "/docs/introduction" },
+      { title: "O que é o NinDuelist", href: "/docs/introduction" },
       { title: "Features", href: "/docs/features" },
-    ],
-  },
-  {
-    title: "Comecando",
-    icon: IconRocket,
-    children: [
-      { title: "Stack", href: "/docs/getting-started/stack" },
-      { title: "Setup", href: "/docs/getting-started/setup" },
-      { title: "Variaveis de Ambiente", href: "/docs/getting-started/env" },
-      { title: "Banco de Dados", href: "/docs/getting-started/database" },
-      { title: "Deploy", href: "/docs/getting-started/deploy" },
-      { title: "Docker", href: "/docs/getting-started/docker" },
+      { title: "Contato", href: "/docs/contact", icon: IconMail },
     ],
   },
   {
@@ -58,7 +43,7 @@ export const navItems: NavItem[] = [
     title: "Comandos",
     icon: IconTerminal,
     children: [
-      { title: "Comandos de Usuario", href: "/docs/commands/user" },
+      { title: "Comandos de Usuário", href: "/docs/commands/user" },
       { title: "Comandos de Admin", href: "/docs/commands/admin", icon: IconAdmin },
     ],
   },
@@ -67,24 +52,7 @@ export const navItems: NavItem[] = [
     icon: IconFlow,
     href: "/docs/duel-flow",
   },
-  {
-    title: "Arquitetura",
-    icon: IconFolder,
-    href: "/docs/architecture",
-  },
-  {
-    title: "Configuracao",
-    icon: IconSettings,
-    href: "/docs/configuration",
-  },
-  {
-    title: "Testes e CI/CD",
-    icon: IconTest,
-    href: "/docs/testing",
-  },
-  {
-    title: "Roadmap",
-    icon: IconMap,
-    href: "/docs/roadmap",
-  },
 ]
+
+
+

@@ -224,6 +224,15 @@ export function IconMap({ className = "w-4 h-4" }: { className?: string }) {
   )
 }
 
+export function IconMail({ className = "w-4 h-4" }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="2" y="4" width="20" height="16" rx="2" />
+      <path d="M22 4l-10 8L2 4" />
+    </svg>
+  )
+}
+
 export function IconFlow({ className = "w-4 h-4" }: { className?: string }) {
   return (
     <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">

@@ -1,4 +1,4 @@
-"use client"
+﻿"use client"
 
 import React, { useState, useEffect } from "react"
 import Link from "next/link"
@@ -234,6 +234,16 @@ export function LandingPage() {
           <p className="text-xs text-text-muted">
             NinDuelist — Bot de duelos ranqueados para Nin Online
           </p>
+          <p className="text-xs text-text-muted">
+            Para solicitar acesso ao bot no seu servidor, envie um e-mail para{" "}
+            <a
+              href="mailto:contatolucasmaclean@gmail.com"
+              className="text-chakra hover:underline"
+            >
+              contatolucasmaclean@gmail.com
+            </a>
+            .
+          </p>
           <div className="flex items-center gap-4">
             <a href="#" className="text-text-muted transition-colors hover:text-text-primary">
               <IconGitHub className="w-4 h-4" />
@@ -247,3 +257,4 @@ export function LandingPage() {
     </div>
   )
 }
+
