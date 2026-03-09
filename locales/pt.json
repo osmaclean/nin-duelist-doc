@@ -298,6 +298,8 @@
     "pendingParams": [
       { "name": "limit", "type": "Inteiro", "required": false, "description": "Máximo de duelos a exibir (1-50)" }
     ],
+    "helpSection": "Ajuda",
+    "helpDesc": "Exibe um guia rápido do bot com lista de comandos, fluxo de duelo, regras e link para a documentação.",
     "settings": "Configurações",
     "settingsDesc": "Configura suas preferências de notificação. Por padrão, DMs estão ativadas.",
     "settingsParams": [
