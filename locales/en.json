@@ -298,6 +298,8 @@
     "pendingParams": [
       { "name": "limit", "type": "Integer", "required": false, "description": "Maximum duels to show (1-50)" }
     ],
+    "helpSection": "Help",
+    "helpDesc": "Shows a quick bot guide with command list, duel flow, rules and link to the documentation.",
     "settings": "Settings",
     "settingsDesc": "Configures your notification preferences. By default, DMs are enabled.",
     "settingsParams": [

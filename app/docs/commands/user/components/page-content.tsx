@@ -95,6 +95,14 @@ export function PageContent() {
         parameters={pendingParams}
       />
 
+      <h2 id="ajuda" className="text-xl font-semibold text-text-primary">{t("userCommands.helpSection")}</h2>
+
+      <CommandCard
+        name="/help"
+        description={t("userCommands.helpDesc")}
+        usage="/help"
+      />
+
       <h2 id="configuracoes" className="text-xl font-semibold text-text-primary">{t("userCommands.settings")}</h2>
 
       <CommandCard
