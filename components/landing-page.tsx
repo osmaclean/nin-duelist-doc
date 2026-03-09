@@ -1,55 +1,57 @@
-"use client"
+'use client'
 
-import React, { useState, useEffect } from "react"
-import Link from "next/link"
-import { motion } from "framer-motion"
-import { useTheme } from "next-themes"
 import {
-  IconSeason,
-  IconWitness,
   IconAntiFarm,
-  IconDuel,
-  IconRanking,
-  IconGitHub,
-  IconDiscord,
   IconExternalLink,
-  IconSun,
+  IconGitHub,
   IconMoon,
-} from "@/components/icons"
-
-const features = [
-  {
-    icon: IconSeason,
-    title: "Seasons",
-    description:
-      "Temporadas de 30 dias com criação e fechamento automáticos. O jogador com mais pontos vira campeão.",
-  },
-  {
-    icon: IconWitness,
-    title: "Testemunhas",
-    description:
-      "Terceiro jogador obrigatório que valida o resultado. Confirmação ou rejeição com um clique.",
-  },
-  {
-    icon: IconAntiFarm,
-    title: "Anti-farm",
-    description:
-      "Mesmo par de jogadores só pode ter 1 duelo confirmado por dia. Cooldowns em criação e botões.",
-  },
-]
+  IconSeason,
+  IconSun,
+  IconWitness,
+} from '@/components/icons'
+import { motion } from 'framer-motion'
+import { useTheme } from 'next-themes'
+import Image from 'next/image'
+import Link from 'next/link'
+import { useCallback, useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 const quickstartCommands = [
-  { cmd: "/duel @oponente MD1 @testemunha", desc: "Desafiar alguém para um duelo" },
-  { cmd: "/rank", desc: "Ver o ranking da season atual" },
-  { cmd: "/profile", desc: "Ver seu perfil com estatísticas" },
-  { cmd: "/pending", desc: "Ver duelos que precisam da sua ação" },
+  { cmd: '/duel @oponente MD1 @testemunha', descKey: 'landing.cmd1Desc' },
+  { cmd: '/rank', descKey: 'landing.cmd2Desc' },
+  { cmd: '/profile', descKey: 'landing.cmd3Desc' },
+  { cmd: '/pending', descKey: 'landing.cmd4Desc' },
 ]
 
 export function LandingPage() {
   const { theme, setTheme } = useTheme()
+  const { t, i18n } = useTranslation()
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => setMounted(true), [])
+
+  const toggleLanguage = useCallback(() => {
+    const newLang = i18n.language === 'en' ? 'pt' : 'en'
+    i18n.changeLanguage(newLang)
+  }, [i18n])
+
+  const features = [
+    {
+      icon: IconSeason,
+      title: t('landing.seasonTitle'),
+      description: t('landing.seasonDesc'),
+    },
+    {
+      icon: IconWitness,
+      title: t('landing.witnessTitle'),
+      description: t('landing.witnessDesc'),
+    },
+    {
+      icon: IconAntiFarm,
+      title: t('landing.antiFarmTitle'),
+      description: t('landing.antiFarmDesc'),
+    },
+  ]
 
   return (
     <div className="min-h-screen bg-background">
@@ -57,41 +59,41 @@ export function LandingPage() {
       <header className="fixed top-0 left-0 right-0 z-50 h-14 border-b border-border-default bg-background/80 backdrop-blur-md">
         <div className="mx-auto flex h-full max-w-6xl items-center gap-4 px-6">
           <Link href="/" className="flex items-center gap-2.5 shrink-0">
-            <div className="flex h-7 w-7 items-center justify-center rounded-md bg-chakra text-background">
-              <span className="font-mono text-xs font-bold">N</span>
-            </div>
-            <span className="font-semibold text-sm text-text-primary">
-              NinDuelist
-            </span>
+            <Image
+              src="/logoduelist.png"
+              alt="NinDuelist"
+              width={40}
+              height={40}
+              className="rounded-md"
+            />
+            <span className="font-semibold text-sm text-text-primary select-none">NinDuelist</span>
           </Link>
           <div className="flex-1" />
           <nav className="hidden items-center gap-6 text-sm md:flex">
             <Link
               href="/docs/introduction"
-              className="text-text-secondary transition-colors hover:text-text-primary"
+              className="text-text-secondary transition-colors hover:text-text-primary select-none"
             >
               Docs
             </Link>
-            <a
-              href="#"
-              className="text-text-secondary transition-colors hover:text-text-primary"
-            >
-              GitHub
-            </a>
-            <a
-              href="#"
-              className="text-text-secondary transition-colors hover:text-text-primary"
-            >
-              Discord
-            </a>
           </nav>
+          {/* Language toggle */}
+          <button
+            onClick={toggleLanguage}
+            className="flex h-8 items-center gap-1.5 rounded-md px-2.5 text-sm text-text-secondary transition-colors hover:bg-surface-hover hover:text-text-primary cursor-pointer select-none"
+            aria-label="Toggle language"
+          >
+            <span className="text-xs font-medium uppercase">
+              {i18n.language === 'en' ? 'PT' : 'EN'}
+            </span>
+          </button>
           {mounted && (
             <button
-              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-              className="flex h-8 w-8 items-center justify-center rounded-md text-text-secondary transition-colors hover:bg-surface-hover hover:text-text-primary"
-              aria-label="Alternar tema"
+              onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+              className="flex h-8 w-8 items-center justify-center rounded-md text-text-secondary transition-colors hover:bg-surface-hover hover:text-text-primary cursor-pointer"
+              aria-label={t('topNav.toggleTheme')}
             >
-              {theme === "dark" ? (
+              {theme === 'dark' ? (
                 <IconSun className="w-4 h-4" />
               ) : (
                 <IconMoon className="w-4 h-4" />
@@ -105,7 +107,10 @@ export function LandingPage() {
       {/* Hero */}
       <section className="relative flex flex-col items-center justify-center px-6 pt-32 pb-20 text-center">
         {/* Seal bg */}
-        <div className="pointer-events-none absolute inset-0 seal-pattern opacity-30 dark:opacity-100" aria-hidden="true" />
+        <div
+          className="pointer-events-none absolute inset-0 seal-pattern opacity-30 dark:opacity-100"
+          aria-hidden="true"
+        />
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -113,26 +118,34 @@ export function LandingPage() {
           transition={{ duration: 0.5 }}
           className="relative z-10"
         >
-          <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-chakra/10 border border-chakra/20">
-            <IconDuel className="w-8 h-8 text-chakra" />
+          <div className="mx-auto mb-6 flex h-56 w-56 items-center justify-center rounded-2xl bg-chakra/10 border border-chakra/20">
+            <Image
+              src="/logoduelist.png"
+              alt="NinDuelist"
+              width={156}
+              height={156}
+              className="rounded-xl"
+            />
           </div>
-          <h1 className="mx-auto max-w-2xl text-balance text-4xl font-bold tracking-tight text-text-primary sm:text-5xl">
+          <h1 className="mx-auto max-w-2xl text-balance text-4xl font-bold tracking-tight text-text-primary sm:text-5xl select-none">
             NinDuelist
           </h1>
-          <p className="mx-auto mt-4 max-w-lg text-pretty text-lg text-text-secondary">
-            Bot Discord para duelos ranqueados no Nin Online. Testemunha obrigatória, seasons automáticas, ranking e anti-farm.
+          <p className="mx-auto mt-4 max-w-lg text-pretty text-lg text-text-secondary select-none">
+            {t('landing.subtitle')}
           </p>
 
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
             <Link
               href="/docs/introduction"
-              className="inline-flex h-10 items-center gap-2 rounded-lg bg-chakra px-5 text-sm font-medium text-background transition-colors hover:bg-chakra-dim"
+              className="inline-flex h-10 items-center gap-2 rounded-lg bg-chakra px-5 text-sm font-medium text-background transition-colors hover:bg-chakra-dim cursor-pointer select-none"
             >
-              Documentação
+              {t('landing.docs')}
             </Link>
             <a
-              href="#"
-              className="inline-flex h-10 items-center gap-2 rounded-lg border border-border-default bg-surface px-5 text-sm font-medium text-text-primary transition-colors hover:bg-surface-hover"
+              href="https://github.com/osmaclean/nin-duelist-doc"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex h-10 items-center gap-2 rounded-lg border border-border-default bg-surface px-5 text-sm font-medium text-text-primary transition-colors hover:bg-surface-hover cursor-pointer select-none"
             >
               <IconGitHub className="w-4 h-4" />
               GitHub
@@ -152,17 +165,17 @@ export function LandingPage() {
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          <h2 className="text-center text-2xl font-semibold text-text-primary">
-            Recursos principais
+          <h2 className="text-center text-2xl font-semibold text-text-primary select-none">
+            {t('landing.featuresTitle')}
           </h2>
-          <p className="mx-auto mt-2 max-w-md text-center text-sm text-text-muted">
-            Tudo que você precisa para duelos competitivos
+          <p className="mx-auto mt-2 max-w-md text-center text-sm text-text-muted select-none">
+            {t('landing.featuresSubtitle')}
           </p>
 
           <div className="mt-12 grid gap-6 sm:grid-cols-3">
             {features.map((f, i) => (
               <motion.div
-                key={f.title}
+                key={i}
                 initial={{ opacity: 0, y: 15 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -172,8 +185,8 @@ export function LandingPage() {
                 <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-chakra-glow text-chakra">
                   <f.icon className="w-5 h-5" />
                 </div>
-                <h3 className="text-sm font-semibold text-text-primary">{f.title}</h3>
-                <p className="mt-1.5 text-sm leading-relaxed text-text-muted">
+                <h3 className="text-sm font-semibold text-text-primary select-none">{f.title}</h3>
+                <p className="mt-1.5 text-sm leading-relaxed text-text-muted select-none">
                   {f.description}
                 </p>
               </motion.div>
@@ -193,9 +206,11 @@ export function LandingPage() {
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          <h2 className="text-2xl font-semibold text-text-primary">Quickstart</h2>
-          <p className="mt-2 text-sm text-text-muted">
-            Comece a usar em segundos com estes comandos
+          <h2 className="text-2xl font-semibold text-text-primary select-none">
+            {t('landing.quickstart')}
+          </h2>
+          <p className="mt-2 text-sm text-text-muted select-none">
+            {t('landing.quickstartSubtitle')}
           </p>
 
           <div className="mt-8 space-y-2">
@@ -208,10 +223,8 @@ export function LandingPage() {
                 transition={{ delay: i * 0.08, duration: 0.3 }}
                 className="flex items-center gap-4 rounded-lg border border-border-default bg-surface px-4 py-3"
               >
-                <code className="shrink-0 font-mono text-sm text-chakra">
-                  {c.cmd}
-                </code>
-                <span className="text-sm text-text-muted">{c.desc}</span>
+                <code className="shrink-0 font-mono text-sm text-chakra">{c.cmd}</code>
+                <span className="text-sm text-text-muted select-none">{t(c.descKey)}</span>
               </motion.div>
             ))}
           </div>
@@ -219,9 +232,9 @@ export function LandingPage() {
           <div className="mt-8">
             <Link
               href="/docs/commands/user"
-              className="inline-flex items-center gap-1.5 text-sm text-chakra transition-colors hover:text-chakra-dim"
+              className="inline-flex items-center gap-1.5 text-sm text-chakra transition-colors hover:text-chakra-dim cursor-pointer select-none"
             >
-              Ver todos os comandos
+              {t('landing.viewAllCommands')}
               <IconExternalLink className="w-3.5 h-3.5" />
             </Link>
           </div>
@@ -231,15 +244,23 @@ export function LandingPage() {
       {/* Footer */}
       <footer className="border-t border-border-default bg-surface">
         <div className="mx-auto flex max-w-6xl flex-col items-center gap-4 px-6 py-8 sm:flex-row sm:justify-between">
-          <p className="text-xs text-text-muted">
-            NinDuelist — Bot de duelos ranqueados para Nin Online
+          <p className="text-xs text-text-muted select-none">{t('landing.footerDesc')}</p>
+          <p className="text-xs text-text-muted select-none">
+            {t('landing.footerAccess')}{' '}
+            <a href="mailto:contatolucasmaclean@gmail.com" className="text-chakra hover:underline">
+              contatolucasmaclean@gmail.com
+            </a>
+            .
           </p>
           <div className="flex items-center gap-4">
-            <a href="#" className="text-text-muted transition-colors hover:text-text-primary">
+            <a
+              href="https://github.com/osmaclean/nin-duelist-doc"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-text-muted transition-colors hover:text-text-primary cursor-pointer"
+              aria-label="GitHub"
+            >
               <IconGitHub className="w-4 h-4" />
-            </a>
-            <a href="#" className="text-text-muted transition-colors hover:text-text-primary">
-              <IconDiscord className="w-4 h-4" />
             </a>
           </div>
         </div>

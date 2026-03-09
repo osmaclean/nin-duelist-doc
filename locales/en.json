@@ -1,0 +1,400 @@
+{
+  "nav": {
+    "introduction": "Introduction",
+    "whatIs": "What is NinDuelist",
+    "features": "Features",
+    "contact": "Contact",
+    "concepts": "Concepts",
+    "season": "Season",
+    "duel": "Duel",
+    "witness": "Witness",
+    "ranking": "Ranking",
+    "antiFarm": "Anti-farm",
+    "commands": "Commands",
+    "userCommands": "User Commands",
+    "adminCommands": "Admin Commands",
+    "duelFlow": "Duel Flow",
+    "docNav": "Documentation navigation"
+  },
+  "topNav": {
+    "search": "Search...",
+    "closeMenu": "Close menu",
+    "openMenu": "Open menu",
+    "toggleTheme": "Toggle theme"
+  },
+  "sidebar": {
+    "progress": "Progress"
+  },
+  "search": {
+    "placeholder": "Search documentation...",
+    "noResults": "No results found"
+  },
+  "landing": {
+    "subtitle": "Discord bot for ranked duels in Nin Online. Mandatory witness, automatic seasons, ranking and anti-farm.",
+    "docs": "Documentation",
+    "github": "GitHub",
+    "featuresTitle": "Main Features",
+    "featuresSubtitle": "Everything you need for competitive duels",
+    "seasonTitle": "Seasons",
+    "seasonDesc": "30-day seasons with automatic creation and closure. The player with the most points becomes champion.",
+    "witnessTitle": "Witnesses",
+    "witnessDesc": "Mandatory third player who validates the result. Confirm or reject with one click.",
+    "antiFarmTitle": "Anti-farm",
+    "antiFarmDesc": "Same player pair can only have 1 confirmed duel per day. Cooldowns on creation and buttons.",
+    "quickstart": "Quickstart",
+    "quickstartSubtitle": "Start using in seconds with these commands",
+    "cmd1Desc": "Challenge someone to a duel",
+    "cmd2Desc": "View the current season ranking",
+    "cmd3Desc": "View your profile with statistics",
+    "cmd4Desc": "View duels that need your action",
+    "viewAllCommands": "View all commands",
+    "footerDesc": "NinDuelist — Ranked duel bot for Nin Online",
+    "footerAccess": "To request bot access for your server, send an email to",
+    "discord": "Discord"
+  },
+  "callout": {
+    "info": "Info",
+    "warn": "Warning",
+    "tip": "Tip",
+    "danger": "Danger"
+  },
+  "commandCard": {
+    "usage": "Usage",
+    "parameters": "Parameters",
+    "name": "Name",
+    "type": "Type",
+    "required": "Req.",
+    "description": "Description",
+    "yes": "Yes",
+    "no": "No",
+    "examples": "Examples"
+  },
+  "introduction": {
+    "title": "What is NinDuelist",
+    "description": "NinDuelist is a Discord bot for managing ranked duels in the game <strong>Nin Online</strong>. It organizes challenges between players with mandatory witness, automatic seasons, ranking and anti-farm.",
+    "howItWorks": "How it works",
+    "howItWorksDesc": "Players use slash commands on Discord to challenge opponents. Each duel requires a mandatory witness who validates the result. Scoring is simple: +1 point per win, -1 per loss. Everything happens within a single embed that is updated in-place on Discord as the duel progresses.",
+    "mainFeatures": "Main features",
+    "feat1Title": "Automatic seasons",
+    "feat1Desc": "30-day seasons with automatic creation and closure. The player with the most points becomes champion.",
+    "feat2Title": "Ranked duels",
+    "feat2Desc": "1v1 challenges in MD1 or MD3 format with a complete state machine.",
+    "feat3Title": "Mandatory witness",
+    "feat3Desc": "Third player defined at duel creation confirms the result.",
+    "feat4Title": "Anti-farm",
+    "feat4Desc": "The same player pair can only have 1 confirmed duel per day (UTC).",
+    "feat5Title": "Ranking by season",
+    "feat5Desc": "Leaderboard with points, wins, losses, win rate, streak and pagination.",
+    "feat6Title": "Admin panel",
+    "feat6Desc": "Administrative commands to manage seasons, cancel/reopen duels, fix results and view logs.",
+    "playerRegistration": "Player registration",
+    "playerRegistrationDesc": "There is no registration command. Players are automatically registered the first time they participate in a duel (as challenger, opponent or witness). The Discord username is kept up to date with each interaction.",
+    "access": "Access",
+    "accessDesc": "The bot is for private use. To request NinDuelist access for your server, contact via email at",
+    "calloutTitle": "Get started now",
+    "calloutDesc": "See the <commandsLink>Commands</commandsLink> section to set up the bot on your server."
+  },
+  "features": {
+    "title": "Features",
+    "description": "Complete list of NinDuelist features.",
+    "core": "Core",
+    "coreItems": [
+      { "title": "1v1 Challenges", "desc": "Duels in MD1 (Best of 1) or MD3 (Best of 3) format with mandatory witness." },
+      { "title": "Simple scoring", "desc": "+1 point per win, -1 per loss. Current streak and peak streak tracked." },
+      { "title": "Automatic seasons", "desc": "30-day seasons with automatic creation and closure. Champion defined by ranking." },
+      { "title": "Mandatory witness", "desc": "Third player defined at duel creation confirms or rejects the result." },
+      { "title": "Anti-farm", "desc": "Same player pair can only have 1 confirmed duel per day (UTC)." },
+      { "title": "Single in-place embed", "desc": "Each duel has a persistent embed dynamically updated with buttons according to state." }
+    ],
+    "queryStats": "Query and Statistics",
+    "queryItems": [
+      { "title": "Paginated ranking", "desc": "Season leaderboard with 20 players per page and button navigation." },
+      { "title": "Player profile", "desc": "Ranking position, points, wins, losses, win rate, streaks and seasons played." },
+      { "title": "History", "desc": "Last 10 confirmed duels with result, score, date and opponent." },
+      { "title": "Head-to-head", "desc": "Direct matchup between two players in the current season." },
+      { "title": "Activity", "desc": "Top 10 most active players by total duels played." },
+      { "title": "Records", "desc": "Highest streak, best win rate (minimum 5 games) and most duels in the season." }
+    ],
+    "admin": "Admin",
+    "adminItems": [
+      "Force cancel duels with reason",
+      "Reopen duels in terminal state (reverts points if confirmed)",
+      "Force expiration of non-terminal duels",
+      "Fix results of confirmed duels with atomic point recalculation",
+      "View audit logs per duel",
+      "Manage seasons (create, end, check status)",
+      "Search duels by player or status"
+    ],
+    "notifications": "Notifications",
+    "notificationItems": [
+      "Automatic DMs on all duel lifecycle events",
+      "Fallback with channel mention if DM fails",
+      "Anti-spam: 5-minute cooldown per user per event type",
+      "Opt-out via <code>/settings notifications off</code>"
+    ],
+    "adminCallout": "All admin actions are recorded in the persistent audit log (<code>AdminActionLog</code>). The original duel embed is automatically updated when possible."
+  },
+  "contact": {
+    "title": "Contact",
+    "description": "To request NinDuelist access for your server, send an email to"
+  },
+  "season": {
+    "title": "Season",
+    "description": "30-day season. Created and closed automatically. When closing, the player with the most points becomes champion and a new season starts immediately.",
+    "lifecycle": "Lifecycle",
+    "creationTitle": "Creation",
+    "creationDesc": "On the bot's first startup or when there is no active season, a new one is created (Season 1, 2, 3...) with a 30-day duration.",
+    "verificationTitle": "Verification",
+    "verificationDesc": "Every 5 minutes, the bot checks if the active season has expired.",
+    "closureTitle": "Closure",
+    "closureDesc": "If expired: all non-finalized duels are cancelled, the player with the most points is registered as champion, the season is deactivated and a new one starts immediately.",
+    "rules": "Rules",
+    "rule1": "Only one season can be active at a time",
+    "rule2": "Each player has independent stats per season (<code>PlayerSeason</code>)",
+    "rule3": "New season = score reset for everyone",
+    "rule4": "The history of all seasons is kept permanently",
+    "rule5": "Rankings are independent per season",
+    "closureNotice": "Closure notice",
+    "closureNoticeDesc": "24 hours before the end of the season, all active players receive a notification warning that the season is ending.",
+    "callout": "To manage seasons manually, use the commands <code>/admin season status</code>, <code>/admin season end</code> and <code>/admin season create</code>. See <adminLink>Admin Commands</adminLink>."
+  },
+  "duel": {
+    "title": "Duel",
+    "description": "A duel is a 1v1 match between two players with a mandatory witness. The result affects both participants' points (+1/-1).",
+    "howItWorks": "How it works",
+    "howItWorksDesc": "The challenger uses <code>/duel @opponent format @witness</code>. The opponent accepts for the duel to start. After the in-game match, either duelist reports the result. The witness confirms, and the duel is officially recorded. Everything happens within a single embed updated in-place on Discord.",
+    "formats": "Formats",
+    "md1": "MD1 (Best of 1)",
+    "md1Desc": "Automatic result (1-0), no need to enter score.",
+    "md3": "MD3 (Best of 3)",
+    "md3Desc": "Opens a modal asking for the score. Valid scores: 2-0 or 2-1.",
+    "states": "Duel states",
+    "proposed": "Proposal",
+    "proposedDesc": "Challenger proposes the duel. Opponent has 30 minutes to accept.",
+    "accepted": "Accepted",
+    "acceptedDesc": "Opponent accepted. Either duelist can start.",
+    "inProgress": "In progress",
+    "inProgressDesc": "The match is happening in-game. Either duelist can submit a result.",
+    "awaitingValidation": "Awaiting validation",
+    "awaitingValidationDesc": "Result submitted. Only the witness can confirm or reject.",
+    "confirmed": "Confirmed",
+    "confirmedDesc": "Witness confirmed. Points applied atomically.",
+    "cancellation": "Cancellation",
+    "cancellationDesc": "Any participant (challenger, opponent or witness) can cancel the duel in the PROPOSED, ACCEPTED or IN_PROGRESS phases. No score is applied.",
+    "expiration": "Expiration",
+    "expirationDesc": "If the opponent does not accept within 30 minutes, the duel expires automatically. A warning is sent to participants when 10 minutes remain.",
+    "callout": "See the complete flow with all phases on the <flowLink>Duel Flow</flowLink> page."
+  },
+  "witness": {
+    "title": "Witness",
+    "description": "The witness system ensures result integrity. A third player, defined at duel creation, confirms who won.",
+    "howItWorks": "How it works",
+    "items": [
+      "The witness is defined by the challenger at the time of duel creation via <code>/duel @opponent format @witness</code>",
+      "The witness does not need to accept the duel — they only participate in the result validation phase",
+      "After a result is submitted, the duel enters <code>AWAITING_VALIDATION</code>",
+      "Only the witness can confirm or reject the result",
+      "If the witness confirms: the duel is finalized atomically",
+      "If the witness rejects: the duel returns to <code>IN_PROGRESS</code> and the result is cleared"
+    ],
+    "rules": "Rules",
+    "ruleItems": [
+      "The witness is mandatory in all duels",
+      "The witness cannot be one of the duelists",
+      "The witness cannot be a bot",
+      "The witness can cancel the duel in the PROPOSED, ACCEPTED or IN_PROGRESS phases"
+    ],
+    "notifications": "Notifications",
+    "notificationsDesc": "The witness receives an automatic DM when the duel is created and when a result is submitted for validation. If the DM fails, the bot falls back to a channel mention.",
+    "callout": "The witness is also automatically registered as a player if it is their first time participating in a duel."
+  },
+  "ranking": {
+    "title": "Ranking",
+    "description": "The ranking shows players ordered by points within the active season. Each season has its own independent ranking.",
+    "howItWorks": "How it works",
+    "items": [
+      "Simple scoring: +1 per win, -1 per loss",
+      "Each season has its own independent ranking via <code>PlayerSeason</code>",
+      "New season = score reset for everyone",
+      "20 players per page with button navigation"
+    ],
+    "leaderboard": "Leaderboard",
+    "leaderboardDesc": "The <code>/rank</code> command shows the current season ranking with medals for the top 3:",
+    "exampleFilename": "Ranking example",
+    "relatedCommands": "Related commands",
+    "relatedItems": [
+      "<code>/rank [page]</code> — Paginated ranking of the current season",
+      "<code>/mvp</code> — Top 3 players (podium) with Peak Streak highlight",
+      "<code>/profile [@player]</code> — Compact profile with ranking position",
+      "<code>/history [@player] [vs] [from] [to] [page]</code> — Last 10 duels and statistics",
+      "<code>/h2h @a @b</code> — Direct matchup between two players",
+      "<code>/activity</code> — Top 10 most active players",
+      "<code>/records</code> — Season records (highest streak, best win rate, most duels)"
+    ],
+    "callout": "Use <code>/profile</code> to see your own statistics, including ranking position, points, win rate and streaks."
+  },
+  "antiFarm": {
+    "title": "Anti-farm",
+    "description": "To prevent score abuse, there is a simple rule: the same player pair can only have 1 confirmed duel per day (UTC).",
+    "rule": "Rule",
+    "ruleDesc": "If Player A and Player B already had a confirmed duel today, any new challenge between them (in either direction) will be blocked. The cooldown resets at midnight UTC.",
+    "cooldowns": "Additional cooldowns",
+    "creationCooldownTitle": "Creation cooldown",
+    "creationCooldownDesc": "30 seconds between duel creations per user.",
+    "buttonDebounceTitle": "Button debounce",
+    "buttonDebounceDesc": "5 seconds cooldown on action buttons to prevent double clicks.",
+    "notifCooldownTitle": "Notification cooldown",
+    "notifCooldownDesc": "5 minutes per user per event type for anti-spam.",
+    "validations": "Validations on /duel",
+    "validationItems": [
+      "There must be an active season",
+      "Cannot duel against yourself",
+      "Opponent and witness cannot be bots",
+      "Witness cannot be one of the duelists",
+      "Neither duelist can have another active duel",
+      "The same pair cannot have more than 1 confirmed duel per day"
+    ],
+    "implementation": "Implementation",
+    "implementationDesc": "The cooldown is implemented with an in-memory key-based Map. It accepts loss on restart (the cooldown is reset). The daily anti-farm is checked in the database, ensuring persistence even after restarts.",
+    "callout": "Cooldown parameters are configurable in <code>src/config.ts</code>. See the <configLink>Configuration</configLink> page for details."
+  },
+  "userCommands": {
+    "title": "User Commands",
+    "description": "Commands available to all players.",
+    "duel": "Duel",
+    "duelDesc": "Challenges a player to a ranked duel.",
+    "duelParams": [
+      { "name": "opponent", "type": "User", "required": true, "description": "Who you want to challenge" },
+      { "name": "format", "type": "Choice", "required": true, "description": "MD1 (Best of 1) or MD3 (Best of 3)" },
+      { "name": "witness", "type": "User", "required": true, "description": "Mandatory witness" }
+    ],
+    "rankingStats": "Ranking and Statistics",
+    "rankDesc": "Shows the current season ranking with 20 players per page.",
+    "rankParams": [
+      { "name": "page", "type": "Integer", "required": false, "description": "Ranking page (default: 1)" }
+    ],
+    "mvpDesc": "Shows the 3 best players of the current season (podium) with Peak Streak highlight.",
+    "profileDesc": "Shows a player's compact profile with ranking position, points, wins, losses, win rate, streaks and seasons played.",
+    "profileParams": [
+      { "name": "player", "type": "User", "required": false, "description": "Player to query (default: you)" }
+    ],
+    "historyDesc": "Shows duel history and statistics in the current season. Shows the last 10 confirmed duels.",
+    "historyParams": [
+      { "name": "player", "type": "User", "required": false, "description": "Player to query (default: you)" },
+      { "name": "vs", "type": "User", "required": false, "description": "Filter duels against this opponent" },
+      { "name": "from", "type": "Text", "required": false, "description": "Start date in YYYY-MM-DD format" },
+      { "name": "to", "type": "Text", "required": false, "description": "End date in YYYY-MM-DD format" },
+      { "name": "page", "type": "Integer", "required": false, "description": "History page (10 duels per page)" }
+    ],
+    "h2hDesc": "Shows the direct matchup between two players in the current season.",
+    "h2hParams": [
+      { "name": "player_a", "type": "User", "required": true, "description": "First player" },
+      { "name": "player_b", "type": "User", "required": true, "description": "Second player" }
+    ],
+    "activityDesc": "Shows the 10 most active players of the current season (by total duels played).",
+    "recordsDesc": "Shows current season records: highest streak, best win rate (minimum 5 games) and most duels.",
+    "seasonDesc": "Shows current season status with partial top 3, dates and remaining days.",
+    "pendingDesc": "Shows duels that need your action, ordered by urgency. Ephemeral response (only you see it).",
+    "pendingParams": [
+      { "name": "limit", "type": "Integer", "required": false, "description": "Maximum duels to show (1-50)" }
+    ],
+    "settings": "Settings",
+    "settingsDesc": "Configures your notification preferences. By default, DMs are enabled.",
+    "settingsParams": [
+      { "name": "notifications", "type": "Choice", "required": true, "description": "Enable DMs or Disable DMs" }
+    ],
+    "callout": "All commands use Discord slash commands. Start typing <code>/</code> in chat."
+  },
+  "adminCommands": {
+    "title": "Admin Commands",
+    "description": "Commands restricted to users with roles listed in <code>ADMIN_ROLE_IDS</code>. All actions are recorded in the persistent audit log.",
+    "warning": "These commands require one of the admin roles configured in <code>ADMIN_ROLE_IDS</code>. The original duel embed is automatically updated when possible.",
+    "duels": "Duels",
+    "cancelDesc": "Force cancels a duel. Duel cannot be in a terminal state (CONFIRMED, CANCELLED, EXPIRED).",
+    "cancelParams": [
+      { "name": "duel_id", "type": "Integer", "required": true, "description": "ID of the duel to cancel" },
+      { "name": "reason", "type": "Text", "required": true, "description": "Cancellation reason" }
+    ],
+    "reopenDesc": "Reopens a duel in terminal state to IN_PROGRESS. If the duel was CONFIRMED, reverts player points/wins/losses.",
+    "reopenParams": [
+      { "name": "duel_id", "type": "Integer", "required": true, "description": "ID of the duel to reopen" },
+      { "name": "reason", "type": "Text", "required": true, "description": "Reopening reason" }
+    ],
+    "forceExpireDesc": "Forces expiration of a non-terminal duel.",
+    "forceExpireParams": [
+      { "name": "duel_id", "type": "Integer", "required": true, "description": "ID of the duel to expire" },
+      { "name": "reason", "type": "Text", "required": true, "description": "Forced expiration reason" }
+    ],
+    "fixResultDesc": "Fixes the result of an already confirmed duel. Reverts old result points and applies new ones in an atomic transaction.",
+    "fixResultParams": [
+      { "name": "duel_id", "type": "Integer", "required": true, "description": "ID of the duel to fix" },
+      { "name": "winner", "type": "User", "required": true, "description": "New winner (must be a participant)" },
+      { "name": "score", "type": "Text", "required": true, "description": "New score in W-L format (e.g.: 2-1)" },
+      { "name": "reason", "type": "Text", "required": true, "description": "Fix reason" }
+    ],
+    "logsDesc": "Shows the admin action history for a duel (date, action, status transition, admin and reason).",
+    "logsParams": [
+      { "name": "duel_id", "type": "Integer", "required": true, "description": "Duel ID" }
+    ],
+    "seasonSection": "Season",
+    "seasonStatusDesc": "Shows active season info: number, name, dates, remaining days, total duels and active players.",
+    "seasonEndDesc": "Manually ends the active season. Cancels non-finalized duels, calculates podium, defines champion and sends public embed.",
+    "seasonCreateDesc": "Creates a new season. There cannot be another active season.",
+    "seasonCreateParams": [
+      { "name": "name", "type": "Text", "required": false, "description": "Season name" },
+      { "name": "duration", "type": "Integer", "required": false, "description": "Duration in days (default: 30, max: 365)" }
+    ],
+    "seasonRepairDesc": "Recalculates season stats from confirmed duels (recovery use).",
+    "seasonRepairParams": [
+      { "name": "season_id", "type": "Integer", "required": true, "description": "ID of the season to repair" }
+    ],
+    "search": "Search",
+    "searchPlayerDesc": "Searches the last 15 duels of a player (as challenger, opponent or witness).",
+    "searchPlayerParams": [
+      { "name": "player", "type": "User", "required": true, "description": "Player to search" }
+    ],
+    "searchStatusDesc": "Searches the last 15 duels in a specific status.",
+    "searchStatusParams": [
+      { "name": "status", "type": "Choice", "required": true, "description": "PROPOSED, ACCEPTED, IN_PROGRESS, AWAITING_VALIDATION, CONFIRMED, CANCELLED, EXPIRED" }
+    ]
+  },
+  "duelFlow": {
+    "title": "Duel Flow",
+    "description": "A duel goes through 5 phases. Everything happens within a single embed that is updated in-place on Discord.",
+    "fullFlow": "Full flow",
+    "phase1": "Phase 1 — Proposal",
+    "phase1Desc": "Player A uses /duel @PlayerB MD1 @Witness. Yellow embed with acceptance status. The opponent has 30 minutes to accept. Buttons: Accept Duel | Cancel.",
+    "phase2": "Phase 2 — Accepted",
+    "phase2Desc": "Opponent accepted. Blue embed. Either duelist can start. Buttons: Start Duel | Cancel.",
+    "phase3": "Phase 3 — In progress",
+    "phase3Desc": "Duel started. Orange embed. Either duelist can submit a result. MD1: automatic result (1-0). MD3: modal asking for score (2-0 or 2-1). Buttons: Submit Result | Cancel.",
+    "phase4": "Phase 4 — Awaiting validation",
+    "phase4Desc": "Result submitted. Purple embed. Only the witness can interact. If confirms: duel finalized atomically. If rejects: returns to IN_PROGRESS. Buttons: Confirm Result | Reject Result.",
+    "phase5": "Phase 5 — Confirmed",
+    "phase5Desc": "Green embed, no buttons. Shows final score. Scoring applied: +1 point for winner, -1 for loser. Streaks updated.",
+    "specialStates": "Special states",
+    "expired": "Expired",
+    "expiredDesc": "Opponent did not accept within 30 minutes. The bot checks every 1 minute. Warning sent when 10 minutes remain.",
+    "cancelled": "Cancelled",
+    "cancelledDesc": "Any participant (challenger, opponent or witness) cancelled in the PROPOSED, ACCEPTED or IN_PROGRESS phases. No score is applied.",
+    "stateDiagram": "State diagram",
+    "stateFilename": "State machine",
+    "notifications": "Notifications by phase",
+    "event": "Event",
+    "whoReceives": "Who receives",
+    "events": [
+      { "event": "Duel created", "who": "Opponent + witness" },
+      { "event": "Opponent accepted", "who": "Both duelists" },
+      { "event": "Result submitted", "who": "Witness" },
+      { "event": "Result confirmed", "who": "Both duelists" },
+      { "event": "Result rejected", "who": "Both duelists" },
+      { "event": "Duel expiring (10 min)", "who": "Opponent + witness" },
+      { "event": "Duel expired", "who": "All (3 participants)" }
+    ],
+    "notifCallout": "Automatic DMs with fallback to channel mention. Anti-spam: 5-minute cooldown per user per event type. Opt-out via <code>/settings notifications off</code>."
+  },
+  "lang": {
+    "en": "English",
+    "pt": "Português"
+  }
+}

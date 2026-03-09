@@ -1,6 +1,5 @@
 import {
   IconBook,
-  IconRocket,
   IconDuel,
   IconSeason,
   IconWitness,
@@ -9,82 +8,53 @@ import {
   IconAdmin,
   IconTerminal,
   IconFlow,
-  IconFolder,
-  IconSettings,
-  IconTest,
-  IconMap,
+  IconMail,
 } from "@/components/icons"
 
 export type NavItem = {
   title: string
+  titleKey: string
   href?: string
-  icon?: React.ComponentType<{ className?: string }>
+  icon?: (props: { className?: string }) => JSX.Element
   children?: NavItem[]
 }
 
 export const navItems: NavItem[] = [
   {
-    title: "Introducao",
+    title: "Introdução",
+    titleKey: "nav.introduction",
     icon: IconBook,
     children: [
-      { title: "O que e o NinDuelist", href: "/docs/introduction" },
-      { title: "Features", href: "/docs/features" },
-    ],
-  },
-  {
-    title: "Comecando",
-    icon: IconRocket,
-    children: [
-      { title: "Stack", href: "/docs/getting-started/stack" },
-      { title: "Setup", href: "/docs/getting-started/setup" },
-      { title: "Variaveis de Ambiente", href: "/docs/getting-started/env" },
-      { title: "Banco de Dados", href: "/docs/getting-started/database" },
-      { title: "Deploy", href: "/docs/getting-started/deploy" },
-      { title: "Docker", href: "/docs/getting-started/docker" },
+      { title: "O que é o NinDuelist", titleKey: "nav.whatIs", href: "/docs/introduction" },
+      { title: "Features", titleKey: "nav.features", href: "/docs/features" },
+      { title: "Contato", titleKey: "nav.contact", href: "/docs/contact", icon: IconMail },
     ],
   },
   {
     title: "Conceitos",
+    titleKey: "nav.concepts",
     icon: IconDuel,
     children: [
-      { title: "Season", href: "/docs/concepts/season", icon: IconSeason },
-      { title: "Duelo", href: "/docs/concepts/duel", icon: IconDuel },
-      { title: "Testemunha", href: "/docs/concepts/witness", icon: IconWitness },
-      { title: "Ranking", href: "/docs/concepts/ranking", icon: IconRanking },
-      { title: "Anti-farm", href: "/docs/concepts/anti-farm", icon: IconAntiFarm },
+      { title: "Season", titleKey: "nav.season", href: "/docs/concepts/season", icon: IconSeason },
+      { title: "Duelo", titleKey: "nav.duel", href: "/docs/concepts/duel", icon: IconDuel },
+      { title: "Testemunha", titleKey: "nav.witness", href: "/docs/concepts/witness", icon: IconWitness },
+      { title: "Ranking", titleKey: "nav.ranking", href: "/docs/concepts/ranking", icon: IconRanking },
+      { title: "Anti-farm", titleKey: "nav.antiFarm", href: "/docs/concepts/anti-farm", icon: IconAntiFarm },
     ],
   },
   {
     title: "Comandos",
+    titleKey: "nav.commands",
     icon: IconTerminal,
     children: [
-      { title: "Comandos de Usuario", href: "/docs/commands/user" },
-      { title: "Comandos de Admin", href: "/docs/commands/admin", icon: IconAdmin },
+      { title: "Comandos de Usuário", titleKey: "nav.userCommands", href: "/docs/commands/user" },
+      { title: "Comandos de Admin", titleKey: "nav.adminCommands", href: "/docs/commands/admin", icon: IconAdmin },
     ],
   },
   {
     title: "Fluxo de Duelo",
+    titleKey: "nav.duelFlow",
     icon: IconFlow,
     href: "/docs/duel-flow",
-  },
-  {
-    title: "Arquitetura",
-    icon: IconFolder,
-    href: "/docs/architecture",
-  },
-  {
-    title: "Configuracao",
-    icon: IconSettings,
-    href: "/docs/configuration",
-  },
-  {
-    title: "Testes e CI/CD",
-    icon: IconTest,
-    href: "/docs/testing",
-  },
-  {
-    title: "Roadmap",
-    icon: IconMap,
-    href: "/docs/roadmap",
   },
 ]

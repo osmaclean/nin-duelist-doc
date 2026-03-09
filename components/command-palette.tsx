@@ -3,24 +3,25 @@
 import React, { useEffect, useState, useCallback, useRef } from "react"
 import { useRouter } from "next/navigation"
 import { motion, AnimatePresence } from "framer-motion"
+import { useTranslation } from "react-i18next"
 import { IconSearch, IconClose } from "@/components/icons"
 import { navItems, type NavItem } from "@/lib/navigation"
 
 type SearchResult = {
-  title: string
+  titleKey: string
   href: string
-  section: string
+  sectionKey: string
 }
 
-function flattenNav(items: NavItem[], section = ""): SearchResult[] {
+function flattenNav(items: NavItem[], sectionKey = ""): SearchResult[] {
   const results: SearchResult[] = []
   for (const item of items) {
-    const currentSection = section || item.title
+    const currentSection = sectionKey || item.titleKey
     if (item.href) {
       results.push({
-        title: item.title,
+        titleKey: item.titleKey,
         href: item.href,
-        section: currentSection,
+        sectionKey: currentSection,
       })
     }
     if (item.children) {
@@ -43,12 +44,13 @@ export function CommandPalette({
   const [selectedIndex, setSelectedIndex] = useState(0)
   const inputRef = useRef<HTMLInputElement>(null)
   const router = useRouter()
+  const { t } = useTranslation()
 
   const results = query.trim()
     ? allPages.filter(
         (p) =>
-          p.title.toLowerCase().includes(query.toLowerCase()) ||
-          p.section.toLowerCase().includes(query.toLowerCase())
+          t(p.titleKey).toLowerCase().includes(query.toLowerCase()) ||
+          t(p.sectionKey).toLowerCase().includes(query.toLowerCase())
       )
     : allPages
 
@@ -134,15 +136,15 @@ export function CommandPalette({
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 onKeyDown={handleKeyDown}
-                placeholder="Buscar na documentação..."
+                placeholder={t("search.placeholder")}
                 className="flex-1 bg-transparent text-sm text-text-primary placeholder:text-text-muted outline-none"
-                aria-label="Buscar"
+                aria-label={t("topNav.search")}
               />
               <button
                 onClick={onClose}
-                className="rounded p-1 text-text-muted transition-colors hover:text-text-primary"
+                className="rounded p-1 text-text-muted transition-colors hover:text-text-primary cursor-pointer"
               >
-                <kbd className="rounded border border-border-default bg-surface-raised px-1.5 py-0.5 font-mono text-[10px]">
+                <kbd className="rounded border border-border-default bg-surface-raised px-1.5 py-0.5 font-mono text-[10px] select-none">
                   ESC
                 </kbd>
               </button>
@@ -151,8 +153,8 @@ export function CommandPalette({
             {/* Results */}
             <div className="max-h-80 overflow-y-auto py-2">
               {results.length === 0 ? (
-                <div className="px-4 py-8 text-center text-sm text-text-muted">
-                  Nenhum resultado encontrado
+                <div className="px-4 py-8 text-center text-sm text-text-muted select-none">
+                  {t("search.noResults")}
                 </div>
               ) : (
                 results.map((result, i) => (
@@ -160,16 +162,16 @@ export function CommandPalette({
                     key={result.href}
                     onClick={() => navigate(result.href)}
                     onMouseEnter={() => setSelectedIndex(i)}
-                    className={`flex w-full items-center gap-3 px-4 py-2.5 text-left text-sm transition-colors ${
+                    className={`flex w-full items-center gap-3 px-4 py-2.5 text-left text-sm transition-colors cursor-pointer select-none ${
                       i === selectedIndex
                         ? "bg-chakra-glow text-text-primary"
                         : "text-text-secondary hover:text-text-primary"
                     }`}
                   >
                     <span className="text-[11px] text-text-muted w-24 shrink-0 truncate">
-                      {result.section}
+                      {t(result.sectionKey)}
                     </span>
-                    <span className="truncate">{result.title}</span>
+                    <span className="truncate">{t(result.titleKey)}</span>
                     {i === selectedIndex && (
                       <span className="ml-auto text-xs text-text-muted">
                         {'↵'}
