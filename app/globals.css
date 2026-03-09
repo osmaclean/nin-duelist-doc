@@ -1,0 +1,256 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
+/* ── NinDuelist Design Tokens ── */
+:root {
+  /* Backgrounds */
+  --background: #f7f7f8;
+  --foreground: #111113;
+  --surface: #ffffff;
+  --surface-hover: #f0f0f2;
+  --surface-raised: #e8e8ec;
+
+  /* Text */
+  --text-primary: #111113;
+  --text-secondary: #5c5c66;
+  --text-muted: #8e8e99;
+  --text-on-chakra: #ffffff;
+
+  /* Borders */
+  --border-default: #dcdce0;
+  --border-subtle: #e8e8ec;
+  --border-strong: #c5c5cc;
+
+  /* Chakra accent — emerald energy */
+  --chakra: #10b981;
+  --chakra-dim: #059669;
+  --chakra-glow: rgba(16, 185, 129, 0.15);
+  --chakra-line: linear-gradient(90deg, transparent, #10b981, transparent);
+
+  /* Semantic */
+  --info: #3b82f6;
+  --warn: #f59e0b;
+  --tip: #10b981;
+  --danger: #ef4444;
+
+  /* Radius */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+
+  /* Spacing scale */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+  --space-3xl: 64px;
+
+  /* Sidebar */
+  --sidebar-width: 260px;
+  --toc-width: 220px;
+  --header-height: 56px;
+
+  /* shadcn compat tokens */
+  --background-val: #f7f7f8;
+  --foreground-val: #111113;
+  --primary: #10b981;
+  --primary-foreground: #ffffff;
+  --secondary: #e8e8ec;
+  --secondary-foreground: #111113;
+  --muted: #e8e8ec;
+  --muted-foreground: #5c5c66;
+  --accent: #f0f0f2;
+  --accent-foreground: #111113;
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
+  --border: #dcdce0;
+  --input: #dcdce0;
+  --ring: #10b981;
+  --card: #ffffff;
+  --card-foreground: #111113;
+  --popover: #ffffff;
+  --popover-foreground: #111113;
+  --radius: 8px;
+}
+
+.dark {
+  --background: #0a0a0c;
+  --foreground: #ededef;
+  --surface: #141416;
+  --surface-hover: #1c1c20;
+  --surface-raised: #242428;
+
+  --text-primary: #ededef;
+  --text-secondary: #9e9eaa;
+  --text-muted: #6b6b78;
+  --text-on-chakra: #ffffff;
+
+  --border-default: #27272b;
+  --border-subtle: #1c1c20;
+  --border-strong: #3a3a42;
+
+  --chakra: #34d399;
+  --chakra-dim: #10b981;
+  --chakra-glow: rgba(52, 211, 153, 0.1);
+  --chakra-line: linear-gradient(90deg, transparent, #34d399, transparent);
+
+  --info: #60a5fa;
+  --warn: #fbbf24;
+  --tip: #34d399;
+  --danger: #f87171;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+
+  /* shadcn compat */
+  --background-val: #0a0a0c;
+  --foreground-val: #ededef;
+  --primary: #34d399;
+  --primary-foreground: #0a0a0c;
+  --secondary: #1c1c20;
+  --secondary-foreground: #ededef;
+  --muted: #1c1c20;
+  --muted-foreground: #9e9eaa;
+  --accent: #1c1c20;
+  --accent-foreground: #ededef;
+  --destructive: #f87171;
+  --destructive-foreground: #0a0a0c;
+  --border: #27272b;
+  --input: #27272b;
+  --ring: #34d399;
+  --card: #141416;
+  --card-foreground: #ededef;
+  --popover: #141416;
+  --popover-foreground: #ededef;
+}
+
+@theme inline {
+  --font-sans: 'Geist', 'Geist Fallback', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'Geist Mono', 'Geist Mono Fallback', ui-monospace, monospace;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-surface-hover: var(--surface-hover);
+  --color-surface-raised: var(--surface-raised);
+
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+
+  --color-border-default: var(--border-default);
+  --color-border-subtle: var(--border-subtle);
+  --color-border-strong: var(--border-strong);
+
+  --color-chakra: var(--chakra);
+  --color-chakra-dim: var(--chakra-dim);
+  --color-chakra-glow: var(--chakra-glow);
+
+  --color-info: var(--info);
+  --color-warn: var(--warn);
+  --color-tip: var(--tip);
+  --color-danger: var(--danger);
+
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+}
+
+@layer base {
+  * {
+    @apply border-border-default outline-chakra/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
+
+/* Chakra line animation */
+@keyframes chakra-flow {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.chakra-line {
+  height: 1px;
+  background: var(--chakra-line);
+  background-size: 200% 100%;
+  animation: chakra-flow 4s linear infinite;
+}
+
+/* Seal pattern bg */
+.seal-pattern {
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%2327272b' stroke-width='0.5' opacity='0.3'%3E%3Ccircle cx='30' cy='30' r='20'/%3E%3Ccircle cx='30' cy='30' r='10'/%3E%3Cline x1='30' y1='10' x2='30' y2='50'/%3E%3Cline x1='10' y1='30' x2='50' y2='30'/%3E%3Cline x1='16' y1='16' x2='44' y2='44'/%3E%3Cline x1='44' y1='16' x2='16' y2='44'/%3E%3C/g%3E%3C/svg%3E");
+  background-repeat: repeat;
+}
+
+/* Focus ring */
+*:focus-visible {
+  outline: 2px solid var(--chakra);
+  outline-offset: 2px;
+}
+
+/* Selection */
+::selection {
+  background-color: var(--chakra-glow);
+  color: var(--text-primary);
+}
+
+/* Blade cut separator */
+.blade-cut {
+  position: relative;
+  height: 1px;
+  background: var(--border-default);
+}
+.blade-cut::before {
+  content: '';
+  position: absolute;
+  left: 10%;
+  width: 30%;
+  height: 1px;
+  background: var(--chakra);
+  opacity: 0.4;
+}
