@@ -29,7 +29,7 @@ export function PageContent() {
       <h2 id="leaderboard" className="text-xl font-semibold text-text-primary">{t("ranking.leaderboard")}</h2>
       <p className="text-sm text-text-secondary leading-relaxed" dangerouslySetInnerHTML={{ __html: t("ranking.leaderboardDesc") }} />
       <CodeBlock language="text" filename={t("ranking.exampleFilename")}>
-        {`🥇 @jogador1 — 15pts | 12V 3D | Streak: 4 (max 7)\n🥈 @jogador2 — 10pts | 8V 2D | Streak: 2 (max 5)\n🥉 @jogador3 — 8pts | 7V 1D | Streak: 1 (max 3)\n4. @jogador4 — 5pts | 5V 0D | Streak: 5 (max 5)`}
+        {`🥇 @jogador1 • 15pts | 12V 3D | Streak: 4 (max 7)\n🥇 @jogador2 • 15pts | 10V 5D | Streak: 2 (max 5)\n🥉 @jogador3 • 8pts | 7V 1D | Streak: 1 (max 3)\n4. @jogador4 • 5pts | 5V 0D | Streak: 5 (max 5)`}
       </CodeBlock>
 
       <h2 id="comandos-relacionados" className="text-xl font-semibold text-text-primary">{t("ranking.relatedCommands")}</h2>
